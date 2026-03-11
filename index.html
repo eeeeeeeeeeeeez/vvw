@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VVW - 進階互動網頁展示</title>
+    <title>VVW - Advanced Interactive Webpage</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,7 @@
             min-height: 100vh;
         }
 
-        /* 背景動畫 */
+        /* Background Animation */
         #bg-animation {
             position: fixed;
             top: 0;
@@ -83,7 +83,7 @@
             50% { transform: translate(30px, -30px) scale(1.1); }
         }
 
-        /* 主容器 */
+        /* Main Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -92,7 +92,7 @@
             z-index: 1;
         }
 
-        /* 導航欄 */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -153,9 +153,10 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5em;
+            font-size: 1.2em;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            font-weight: bold;
         }
 
         .theme-toggle:hover {
@@ -163,7 +164,7 @@
             box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
         }
 
-        /* 英雄區塊 */
+        /* Hero Section */
         .hero {
             text-align: center;
             margin: 80px 0;
@@ -241,7 +242,7 @@
             border-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* 功能卡片網格 */
+        /* Features Grid */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -276,8 +277,17 @@
         }
 
         .feature-icon {
-            font-size: 3em;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
             margin-bottom: 20px;
+            color: white;
+            font-weight: bold;
         }
 
         .feature-card h3 {
@@ -292,7 +302,7 @@
             line-height: 1.8;
         }
 
-        /* 遊戲區塊 */
+        /* Game Section */
         .game-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
@@ -340,11 +350,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2em;
+            font-size: 1.5em;
             font-weight: 900;
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
+            color: #64748b;
         }
 
         .game-tile:hover {
@@ -394,7 +405,7 @@
             font-weight: 900;
         }
 
-        /* 統計區塊 */
+        /* Stats Section */
         .stats-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -432,7 +443,7 @@
             font-weight: 600;
         }
 
-        /* 頁腳 */
+        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
@@ -445,7 +456,7 @@
             margin: 10px 0;
         }
 
-        /* 響應式設計 */
+        /* Responsive Design */
         @media (max-width: 768px) {
             nav ul {
                 gap: 20px;
@@ -472,7 +483,7 @@
             }
         }
 
-        /* 成功動畫 */
+        /* Success Animation */
         @keyframes successPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -484,7 +495,7 @@
     </style>
 </head>
 <body>
-    <!-- 背景動畫 -->
+    <!-- Background Animation -->
     <div id="bg-animation">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -492,123 +503,123 @@
     </div>
 
     <div class="container">
-        <!-- 導航欄 -->
+        <!-- Navigation -->
         <nav>
             <div class="logo">VVW</div>
             <ul>
-                <li><a href="#features">功能</a></li>
-                <li><a href="#game">遊戲</a></li>
-                <li><a href="#stats">統計</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#game">Game</a></li>
+                <li><a href="#stats">Stats</a></li>
             </ul>
-            <button class="theme-toggle" id="theme-toggle">🌙</button>
+            <button class="theme-toggle" id="theme-toggle">DARK</button>
         </nav>
 
-        <!-- 英雄區塊 -->
+        <!-- Hero Section -->
         <section class="hero">
-            <h1>VVW 進階互動網頁</h1>
-            <p>體驗現代化的設計與內置遊戲的完美結合</p>
+            <h1>VVW Advanced Interactive Webpage</h1>
+            <p>Experience modern design combined with interactive gaming</p>
             <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">玩遊戲</button>
-                <button class="btn btn-secondary" onclick="window.open('https://github.com/eeeeeeeeeeeeez/vvw')">查看源代碼</button>
+                <button class="btn btn-primary" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">Play Game</button>
+                <button class="btn btn-secondary" onclick="window.open('https://github.com/eeeeeeeeeeeeez/vvw')">View Source</button>
             </div>
         </section>
 
-        <!-- 功能區塊 -->
+        <!-- Features Section -->
         <section class="features" id="features">
             <div class="feature-card">
-                <div class="feature-icon">✨</div>
-                <h3>精美設計</h3>
-                <p>採用最新的設計趨勢，包括玻璃擬態、漸層與微交互動畫，為用戶帶來視覺享受。</p>
+                <div class="feature-icon">A</div>
+                <h3>Modern Design</h3>
+                <p>Latest design trends including glassmorphism, gradients and smooth micro-interactions for visual enjoyment.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>內置遊戲</h3>
-                <p>直接在網頁上遊玩「記憶翻牌」小遊戲，挑戰您的記憶力與反應速度。</p>
+                <div class="feature-icon">B</div>
+                <h3>Built-in Game</h3>
+                <p>Play the Memory Match game directly on the webpage to challenge your memory and reaction speed.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>超快加載</h3>
-                <p>完全靜態網頁，無需後端服務器，加載速度極快，體驗流暢。</p>
+                <div class="feature-icon">C</div>
+                <h3>Ultra Fast</h3>
+                <p>Completely static webpage with no backend server required, delivering lightning-fast loading speeds.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>完全響應式</h3>
-                <p>完美適配所有設備，無論是手機、平板還是桌面電腦，都能享受最佳體驗。</p>
+                <div class="feature-icon">D</div>
+                <h3>Fully Responsive</h3>
+                <p>Perfect adaptation across all devices from mobile phones to tablets and desktop computers.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎨</div>
-                <h3>主題切換</h3>
-                <p>支援淺色與深色主題的即時切換，根據您的偏好選擇舒適的視覺風格。</p>
+                <div class="feature-icon">E</div>
+                <h3>Theme Toggle</h3>
+                <p>Switch between light and dark themes instantly, choosing your preferred visual style.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>現代技術</h3>
-                <p>使用 HTML5、CSS3 與現代 JavaScript，展示 Web 技術的最新成就。</p>
+                <div class="feature-icon">F</div>
+                <h3>Modern Tech</h3>
+                <p>Built with HTML5, CSS3 and modern JavaScript showcasing the latest web technology achievements.</p>
             </div>
         </section>
 
-        <!-- 遊戲區塊 -->
+        <!-- Game Section -->
         <section class="game-section" id="game">
-            <h2>🎮 記憶翻牌遊戲</h2>
-            <p>點擊卡片找到配對，挑戰您的記憶力！</p>
+            <h2>Memory Match Game</h2>
+            <p>Click cards to find matching pairs and challenge your memory</p>
 
             <div class="game-container">
                 <div id="gameBoard"></div>
                 <div class="game-controls">
-                    <button class="btn btn-primary" onclick="initGame()">重新開始</button>
-                    <button class="btn btn-secondary" onclick="resetStats()">重置統計</button>
+                    <button class="btn btn-primary" onclick="initGame()">New Game</button>
+                    <button class="btn btn-secondary" onclick="resetStats()">Reset Stats</button>
                 </div>
             </div>
 
             <div class="game-stats">
                 <div class="stat">
-                    <div class="stat-label">配對數</div>
+                    <div class="stat-label">Matches</div>
                     <div class="stat-value" id="matches">0</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">翻牌次數</div>
+                    <div class="stat-label">Flips</div>
                     <div class="stat-value" id="flips">0</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">最高配對</div>
+                    <div class="stat-label">Best Score</div>
                     <div class="stat-value" id="maxMatches">0</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-label">遊戲狀態</div>
-                    <div class="stat-value" id="status">準備</div>
+                    <div class="stat-label">Status</div>
+                    <div class="stat-value" id="status">Ready</div>
                 </div>
             </div>
         </section>
 
-        <!-- 統計區塊 -->
+        <!-- Stats Section -->
         <section class="stats-section" id="stats">
             <div class="stat-card">
-                <div class="stat-number">8</div>
-                <div class="stat-label">功能模組</div>
+                <div class="stat-number">6</div>
+                <div class="stat-label">Feature Modules</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">靜態網頁</div>
+                <div class="stat-label">Static Page</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">0ms</div>
-                <div class="stat-label">伺服器延遲</div>
+                <div class="stat-label">Server Delay</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">可玩性</div>
+                <div class="stat-number">Infinite</div>
+                <div class="stat-label">Playability</div>
             </div>
         </section>
 
-        <!-- 頁腳 -->
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2026 VVW Project. 部署於 GitHub Pages.</p>
-            <p>🚀 使用最新的 Web 技術 | 🎮 內置互動遊戲 | 📱 完全響應式設計</p>
+            <p>Copyright 2026 VVW Project. Deployed on GitHub Pages.</p>
+            <p>Latest Web Technology | Interactive Gaming | Fully Responsive Design</p>
         </footer>
     </div>
 
     <script>
-        // ===== 遊戲邏輯 =====
+        // ===== Game Logic =====
         const gameBoard = document.getElementById('gameBoard');
         const matchesDisplay = document.getElementById('matches');
         const flipsDisplay = document.getElementById('flips');
@@ -624,10 +635,10 @@
             locked: false
         };
 
-        const emojis = ['🌟', '🎨', '🚀', '🎮', '💎', '🔥', '🌈', '⚡'];
+        const symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
         function initGame() {
-            gameState.tiles = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+            gameState.tiles = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
             gameState.flipped = [];
             gameState.matches = 0;
             gameState.flips = 0;
@@ -637,12 +648,12 @@
             gameBoard.style.opacity = '0';
 
             setTimeout(() => {
-                gameState.tiles.forEach((emoji, index) => {
+                gameState.tiles.forEach((symbol, index) => {
                     const tile = document.createElement('div');
                     tile.className = 'game-tile';
                     tile.textContent = '?';
                     tile.dataset.index = index;
-                    tile.dataset.emoji = emoji;
+                    tile.dataset.symbol = symbol;
                     tile.onclick = () => flipTile(tile);
                     gameBoard.appendChild(tile);
                 });
@@ -652,7 +663,7 @@
             }, 300);
 
             updateDisplay();
-            statusDisplay.textContent = '遊戲中';
+            statusDisplay.textContent = 'Playing';
         }
 
         function flipTile(tile) {
@@ -661,7 +672,7 @@
             }
 
             tile.classList.add('active');
-            tile.textContent = tile.dataset.emoji;
+            tile.textContent = tile.dataset.symbol;
             gameState.flipped.push(tile);
             gameState.flips++;
 
@@ -675,7 +686,7 @@
 
         function checkMatch() {
             const [tile1, tile2] = gameState.flipped;
-            const isMatch = tile1.dataset.emoji === tile2.dataset.emoji;
+            const isMatch = tile1.dataset.symbol === tile2.dataset.symbol;
 
             setTimeout(() => {
                 if (isMatch) {
@@ -688,8 +699,8 @@
                         localStorage.setItem('maxMatches', gameState.maxMatches);
                     }
 
-                    if (gameState.matches === emojis.length) {
-                        statusDisplay.textContent = '完成! 🎉';
+                    if (gameState.matches === symbols.length) {
+                        statusDisplay.textContent = 'Completed';
                         gameState.locked = true;
                     }
                 } else {
@@ -717,13 +728,13 @@
             updateDisplay();
         }
 
-        // ===== 主題切換 =====
+        // ===== Theme Toggle =====
         const themeToggle = document.getElementById('theme-toggle');
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
         if (isDarkMode) {
             document.body.style.filter = 'invert(1) hue-rotate(180deg)';
-            themeToggle.textContent = '☀️';
+            themeToggle.textContent = 'LIGHT';
         }
 
         themeToggle.addEventListener('click', () => {
@@ -731,15 +742,15 @@
             if (isDark) {
                 document.body.style.filter = '';
                 localStorage.setItem('darkMode', 'false');
-                themeToggle.textContent = '🌙';
+                themeToggle.textContent = 'DARK';
             } else {
                 document.body.style.filter = 'invert(1) hue-rotate(180deg)';
                 localStorage.setItem('darkMode', 'true');
-                themeToggle.textContent = '☀️';
+                themeToggle.textContent = 'LIGHT';
             }
         });
 
-        // ===== 平滑滾動 =====
+        // ===== Smooth Scrolling =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -753,13 +764,13 @@
             });
         });
 
-        // ===== 初始化遊戲 =====
+        // ===== Initialize Game =====
         initGame();
 
-        // ===== 控制台歡迎信息 =====
-        console.log('%c🎉 歡迎來到 VVW 進階互動網頁！', 'font-size: 20px; color: #6366f1; font-weight: bold;');
-        console.log('%c🎮 現在可以直接在網頁上玩記憶翻牌遊戲了！', 'font-size: 14px; color: #8b5cf6;');
-        console.log('%c✨ 享受精美的設計與流暢的互動體驗', 'font-size: 12px; color: #999;');
+        // ===== Console Message =====
+        console.log('%cWelcome to VVW Advanced Interactive Webpage', 'font-size: 20px; color: #6366f1; font-weight: bold;');
+        console.log('%cMemory Match game is now available on the webpage', 'font-size: 14px; color: #8b5cf6;');
+        console.log('%cEnjoy the modern design and smooth interactive experience', 'font-size: 12px; color: #999;');
     </script>
 </body>
 </html>
