@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVW - 靜態網頁</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #764ba2;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        main {
+            margin: 30px 0;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-left: 4px solid #764ba2;
+            padding-left: 15px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VVW</h1>
+            <p class="subtitle">靜態網頁部署示例</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>歡迎</h2>
+                <p>這是一個部署在 GitHub Pages 上的靜態網頁。該網頁展示了現代化的網頁設計，具有響應式布局和流暢的動畫效果。</p>
+                <div class="info-box">
+                    <strong>💡 提示：</strong> 此網頁完全由 HTML、CSS 和 JavaScript 組成，無需任何後端服務器支持。
+                </div>
+            </section>
+
+            <section>
+                <h2>主要特性</h2>
+                <ul class="feature-list">
+                    <li>響應式設計 - 適配所有設備尺寸</li>
+                    <li>現代化外觀 - 漸變背景和陰影效果</li>
+                    <li>流暢動畫 - 頁面加載時的優雅過渡</li>
+                    <li>易於維護 - 簡潔的 HTML 和 CSS 結構</li>
+                    <li>快速加載 - 輕量級靜態資源</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>技術棧</h2>
+                <p>此靜態網頁採用以下技術構建：</p>
+                <ul class="feature-list">
+                    <li><strong>HTML5</strong> - 語義化標記</li>
+                    <li><strong>CSS3</strong> - 現代樣式和動畫</li>
+                    <li><strong>GitHub Pages</strong> - 免費靜態網站託管</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>開始使用</h2>
+                <p>您可以通過以下方式自定義此網頁：</p>
+                <ol style="margin-left: 20px; color: #555;">
+                    <li>編輯 <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">index.html</code> 文件修改內容</li>
+                    <li>修改 <code style="background: #f0f0f0; padding: 2px 6px; border-radius: 3px;">style</code> 標籤中的 CSS 自定義樣式</li>
+                    <li>提交更改到 GitHub 倉庫</li>
+                    <li>GitHub Pages 將自動部署您的更改</li>
+                </ol>
+                <button class="cta-button" onclick="alert('感謝訪問 VVW 靜態網頁！')">點擊我</button>
+            </section>
+
+            <section>
+                <h2>關於此項目</h2>
+                <p>此項目演示了如何在 GitHub 上部署和託管靜態網頁。GitHub Pages 提供了一個簡單、免費且可靠的方式來發佈您的靜態內容。</p>
+                <p>無論您是想創建個人作品集、文檔網站還是項目展示頁面，GitHub Pages 都是一個絕佳的選擇。</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 VVW Project. 部署於 GitHub Pages.</p>
+            <p>訪問倉庫: <a href="https://github.com/eeeeeeeeeeeeez/vvw" style="color: #667eea; text-decoration: none;">github.com/eeeeeeeeeeeeez/vvw</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // 簡單的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('VVW 靜態網頁已加載');
+            
+            // 為所有按鈕添加點擊動畫
+            const buttons = document.querySelectorAll('.cta-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+                    ripple.style.animation = 'ripple 0.6s ease-out';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
