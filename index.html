@@ -258,6 +258,151 @@
             }
         }
 
+        /* Carousel Section */
+        .carousel-section {
+            padding: 4rem 0;
+            scroll-margin-top: 80px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .carousel-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .carousel-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .carousel-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .carousel-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.3);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 62, 62, 0.3);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .carousel-arrow.prev {
+            left: 1.5rem;
+        }
+
+        .carousel-arrow.next {
+            right: 1.5rem;
+        }
+
         /* Main Content */
         .container {
             z-index: 1;
@@ -935,6 +1080,7 @@
             <div class="nav-center">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">首頁</a></li>
+                    <li><a href="#carousel">品牧故事</a></li>
                     <li><a href="#products">產品</a></li>
                     <li><a href="#faq">常見問題</a></li>
                     <li><a href="#contact">聯絡</a></li>
@@ -962,6 +1108,71 @@
                 <h1>VVW 品牌展示</h1>
                 <p>探索極致的視覺美學與現代設計。我們致力於創造令人驚嘆的數位體驗，將創意與技術完美融合。</p>
                 <a href="https://github.com/eeeeeeeeeeeeez/vvw" class="btn">查看專案</a>
+            </div>
+        </div>
+
+        <!-- Carousel Section -->
+        <div class="carousel-section" id="carousel">
+            <h2 class="section-title">品牌故事</h2>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-inner" id="carouselInner">
+                        <!-- Carousel Item 1 -->
+                        <div class="carousel-item active">
+                            <svg class="carousel-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="40" fill="#ff3e3e" opacity="0.1"/>
+                                <rect x="20" y="20" width="60" height="60" fill="none" stroke="#2ecc71" stroke-width="2" opacity="0.1"/>
+                            </svg>
+                            <div class="carousel-content">
+                                <h3 class="carousel-title">創新設計</h3>
+                                <p class="carousel-description">我們相信設計不僅是美學，更是解決問題的藝術。每一個像素都經過精心打磨，為您創造卓越的使用體驗。</p>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Item 2 -->
+                        <div class="carousel-item">
+                            <svg class="carousel-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 20 80 L 50 20 L 80 80" fill="none" stroke="#ff3e3e" stroke-width="2" opacity="0.1"/>
+                                <circle cx="50" cy="50" r="15" fill="#2ecc71" opacity="0.1"/>
+                            </svg>
+                            <div class="carousel-content">
+                                <h3 class="carousel-title">技術卓越</h3>
+                                <p class="carousel-description">採用最新的技術棧和最佳實踐，確保我們的產品不僅功能強大，而且性能優異、安全可靠。</p>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Item 3 -->
+                        <div class="carousel-item">
+                            <svg class="carousel-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="15" y="15" width="70" height="70" fill="none" stroke="#2ecc71" stroke-width="2" opacity="0.1"/>
+                                <circle cx="50" cy="50" r="20" fill="#ff3e3e" opacity="0.1"/>
+                            </svg>
+                            <div class="carousel-content">
+                                <h3 class="carousel-title">客戶至上</h3>
+                                <p class="carousel-description">您的成功是我們的目標。我們提供全方位的支援和諮詢，確保您能最大化地利用我們的產品。</p>
+                            </div>
+                        </div>
+
+                        <!-- Carousel Item 4 -->
+                        <div class="carousel-item">
+                            <svg class="carousel-bg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <polygon points="50,10 90,90 10,90" fill="none" stroke="#ff3e3e" stroke-width="2" opacity="0.1"/>
+                                <circle cx="50" cy="50" r="25" fill="#2ecc71" opacity="0.1"/>
+                            </svg>
+                            <div class="carousel-content">
+                                <h3 class="carousel-title">持續創新</h3>
+                                <p class="carousel-description">市場在變化，我們也在進化。定期的更新和新功能開發，讓您始終走在行業前沿。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-arrow prev" id="carouselPrev">&#10094;</button>
+                    <button class="carousel-arrow next" id="carouselNext">&#10095;</button>
+
+                    <!-- Navigation Dots -->
+                    <div class="carousel-controls" id="carouselControls"></div>
+                </div>
             </div>
         </div>
 
@@ -1287,7 +1498,69 @@
             requestAnimationFrame(animate);
         }
 
-        // Navigation Scroll Effects and Scroll Spy
+        // Carousel Functionality
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const carouselControls = document.getElementById('carouselControls');
+        const carouselPrev = document.getElementById('carouselPrev');
+        const carouselNext = document.getElementById('carouselNext');
+        let currentCarouselIndex = 0;
+        let carouselAutoplayInterval;
+
+        // Create carousel dots
+        carouselItems.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToCarouselSlide(index));
+            carouselControls.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            carouselItems.forEach((item, index) => {
+                item.classList.toggle('active', index === currentCarouselIndex);
+            });
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCarouselIndex);
+            });
+        }
+
+        function goToCarouselSlide(index) {
+            currentCarouselIndex = index;
+            updateCarousel();
+            resetCarouselAutoplay();
+        }
+
+        function nextCarouselSlide() {
+            currentCarouselIndex = (currentCarouselIndex + 1) % carouselItems.length;
+            updateCarousel();
+        }
+
+        function prevCarouselSlide() {
+            currentCarouselIndex = (currentCarouselIndex - 1 + carouselItems.length) % carouselItems.length;
+            updateCarousel();
+        }
+
+        function startCarouselAutoplay() {
+            carouselAutoplayInterval = setInterval(nextCarouselSlide, 5000);
+        }
+
+        function resetCarouselAutoplay() {
+            clearInterval(carouselAutoplayInterval);
+            startCarouselAutoplay();
+        }
+
+        carouselPrev.addEventListener('click', () => {
+            prevCarouselSlide();
+            resetCarouselAutoplay();
+        });
+
+        carouselNext.addEventListener('click', () => {
+            nextCarouselSlide();
+            resetCarouselAutoplay();
+        });
+
+        startCarouselAutoplay();
+
+                // Navigation Scroll Effects and Scroll Spy
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-links a');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
