@@ -143,6 +143,42 @@
             min-height: auto;
         }
 
+        /* Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.8rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 62, 62, 0.3);
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -161,6 +197,22 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card.hidden {
+            display: none;
         }
 
         .product-card:hover {
@@ -254,6 +306,14 @@
             box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3);
         }
 
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -273,6 +333,13 @@
             .products-grid {
                 grid-template-columns: 1fr;
             }
+            .filter-container {
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 640px) {
@@ -281,6 +348,13 @@
             .logo-container img { max-width: 150px; }
             .glass-card { padding: 1.5rem; }
             p { font-size: 1rem; }
+            .filter-container {
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -304,9 +378,21 @@
         <!-- Products Section -->
         <div class="products-section">
             <h2>精選產品</h2>
-            <div class="products-grid">
+            
+            <!-- Filter Buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="design">設計工具</button>
+                <button class="filter-btn" data-filter="development">開發框架</button>
+                <button class="filter-btn" data-filter="analytics">分析平台</button>
+                <button class="filter-btn" data-filter="security">安全方案</button>
+                <button class="filter-btn" data-filter="cloud">雲端服務</button>
+                <button class="filter-btn" data-filter="mobile">行動應用</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" data-category="design">
                     <div class="product-image">🎨</div>
                     <div class="product-content">
                         <div class="product-category">設計工具</div>
@@ -318,7 +404,7 @@
                 </div>
 
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" data-category="development">
                     <div class="product-image">⚡</div>
                     <div class="product-content">
                         <div class="product-category">開發框架</div>
@@ -330,7 +416,7 @@
                 </div>
 
                 <!-- Product 3 -->
-                <div class="product-card">
+                <div class="product-card" data-category="analytics">
                     <div class="product-image">🎯</div>
                     <div class="product-content">
                         <div class="product-category">分析平台</div>
@@ -342,7 +428,7 @@
                 </div>
 
                 <!-- Product 4 -->
-                <div class="product-card">
+                <div class="product-card" data-category="security">
                     <div class="product-image">🔐</div>
                     <div class="product-content">
                         <div class="product-category">安全方案</div>
@@ -354,7 +440,7 @@
                 </div>
 
                 <!-- Product 5 -->
-                <div class="product-card">
+                <div class="product-card" data-category="cloud">
                     <div class="product-image">🌐</div>
                     <div class="product-content">
                         <div class="product-category">雲端服務</div>
@@ -366,7 +452,7 @@
                 </div>
 
                 <!-- Product 6 -->
-                <div class="product-card">
+                <div class="product-card" data-category="mobile">
                     <div class="product-image">📱</div>
                     <div class="product-content">
                         <div class="product-category">行動應用</div>
@@ -376,6 +462,11 @@
                         <button class="product-btn">了解更多</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                沒有找到符合條件的產品。請嘗試其他篩選條件。
             </div>
         </div>
     </div>
@@ -446,6 +537,43 @@
             });
             requestAnimationFrame(animate);
         }
+
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        const emptyState = document.getElementById('emptyState');
+        const productsGrid = document.getElementById('productsGrid');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Get selected filter
+                const selectedFilter = this.getAttribute('data-filter');
+
+                // Filter products
+                let visibleCount = 0;
+                productCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (selectedFilter === 'all' || category === selectedFilter) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Show/hide empty state
+                if (visibleCount === 0) {
+                    emptyState.style.display = 'block';
+                } else {
+                    emptyState.style.display = 'none';
+                }
+            });
+        });
 
         // Product button interactions
         document.querySelectorAll('.product-btn').forEach(btn => {
