@@ -419,6 +419,98 @@
             box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3);
         }
 
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            scroll-margin-top: 80px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.2s; }
+        .faq-item:nth-child(2) { animation-delay: 0.3s; }
+        .faq-item:nth-child(3) { animation-delay: 0.4s; }
+        .faq-item:nth-child(4) { animation-delay: 0.5s; }
+        .faq-item:nth-child(5) { animation-delay: 0.6s; }
+        .faq-item:nth-child(6) { animation-delay: 0.7s; }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 62, 62, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .faq-answer-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
         /* Contact Section */
         .contact-section {
             padding: 4rem 0;
@@ -588,6 +680,7 @@
             <a href="#home" class="nav-logo">VVW</a>
             <ul class="nav-links">
                 <li><a href="#products">產品</a></li>
+                <li><a href="#faq">常見問題</a></li>
                 <li><a href="#contact">聯絡</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" title="切換深色/淺色模式">🌙</button>
@@ -735,6 +828,72 @@
             <!-- Empty State -->
             <div class="empty-state" id="emptyState" style="display: none;">
                 沒有找到符合條件的產品。請嘗試其他篩選條件。
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section" id="faq">
+            <h2 class="section-title">常見問題</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">VVW 的產品適合哪些企業使用？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">VVW 的產品套件適合各種規模的企業，從初創公司到大型企業都能受益。我們的解決方案具有高度的可擴展性和靈活性，可根據不同業務需求進行定製。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">產品的實施週期需要多長時間？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">實施週期因項目複雜度而異。通常，基礎設定可在 2-4 週內完成，而複雜的企業級部署可能需要 2-3 個月。我們的專業團隊會根據您的具體需求制定詳細的實施計劃。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">VVW 是否提供技術支援和培訓？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">是的，我們提供全面的技術支援和培訓服務。包括初期的系統培訓、持續的技術支援、定期的升級維護，以及專業的諮詢服務。我們致力於確保您能充分利用我們的產品。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">產品的安全性和數據隱私如何保證？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">安全性是我們的首要優先級。我們採用行業領先的加密技術、多層安全防護、定期的安全審計，以及符合國際標準（如 ISO 27001、GDPR）的數據隱私政策。所有數據都經過加密存儲和傳輸。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">是否可以進行免費試用？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">當然可以！我們提供 30 天的免費試用期，讓您能夠充分體驗我們的產品功能。無需信用卡，也無需承諾任何長期合約。試用期間享受完整功能和專業支援。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-question-text">產品的定價模式是什麼？</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-answer-text">我們提供靈活的定價模式，包括按使用量計費、固定月費和企業級自訂方案。每個方案都包含不同級別的功能和支援。我們很樂意根據您的預算和需求提供最合適的方案。</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -890,6 +1049,22 @@
             btn.addEventListener('click', function() {
                 const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
                 alert(`感謝您對 "${productTitle}" 的興趣！\n\n我們的團隊將很快與您聯繫。`);
+            });
+        });
+
+        // FAQ Accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', function() {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('active');
             });
         });
 
