@@ -1802,7 +1802,7 @@
         <div class="contact-section" id="contact">
             <h2 class="section-title">聯絡我們</h2>
             <div class="contact-container">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/xyzqwert" novalidate>
                     <div class="form-group">
                         <label for="name">姓名</label>
                         <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
@@ -2269,22 +2269,50 @@
             submitBtn.textContent = '';
             formMessage.style.display = 'none';
 
-            // Simulate form submission with delay
-            setTimeout(() => {
+            // Send form data to Formspree using fetch
+            const formData = new FormData(contactForm);
+            
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    submitBtn.textContent = '發送訊息';
+                    
+                    formMessage.textContent = '訊息已成功發送！感謝您的联繫，我們將盡快回覆。';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    contactForm.reset();
+                    emailInput.style.borderColor = 'var(--glass-border)';
+
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                // Error
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = '發送訊息';
                 
-                formMessage.textContent = '訊息已成功發送！感謝您的聯繫，我們將盡快回覆。';
-                formMessage.className = 'form-message success';
+                formMessage.textContent = '發送失敗，請稍後再試。';
+                formMessage.className = 'form-message error';
                 formMessage.style.display = 'block';
-                contactForm.reset();
-                emailInput.style.borderColor = 'var(--glass-border)';
 
                 setTimeout(() => {
                     formMessage.style.display = 'none';
                 }, 5000);
-            }, 1500);
+            });
         });
 
         // Smooth scroll for navigation links
