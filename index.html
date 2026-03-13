@@ -1012,13 +1012,183 @@
         }
 
         /* Footer */
+        /* Footer */
         footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-top: 1px solid var(--glass-border);
-            margin-top: 4rem;
+            padding: 4rem 2rem 2rem;
+            margin-top: 6rem;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+            padding-left: 0.5rem;
+        }
+
+        .footer-newsletter {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .footer-newsletter input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-newsletter input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 62, 62, 0.1);
+        }
+
+        .footer-newsletter input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-newsletter button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .footer-newsletter button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 62, 62, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(255, 62, 62, 0.3);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 62, 62, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
         }
 
         /* Responsive */
@@ -1424,8 +1594,64 @@
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="回到頂部">&#8593;</button>
+
+    <!-- Footer -->
     <footer>
-        &copy; 2026 VVW Design. All rights reserved. | 專業設計與開發解決方案提供商
+        <div class="footer-content">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3>VVW</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem;">我們致力於提供靈活、高效率的設計和開發解決方案，幫助企業實現數位轉型。</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>快速連結</h3>
+                <ul>
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#carousel">品牧故事</a></li>
+                    <li><a href="#products">產品</a></li>
+                    <li><a href="#faq">常見問題</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+            </div>
+
+            <!-- Products -->
+            <div class="footer-section">
+                <h3>產品分類</h3>
+                <ul>
+                    <li><a href="#products">設計工具</a></li>
+                    <li><a href="#products">開發框架</a></li>
+                    <li><a href="#products">分析平台</a></li>
+                    <li><a href="#products">安全方案</a></li>
+                    <li><a href="#products">雲端服務</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-section">
+                <h3>訂閱電子報</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">接收最新的產品更新和业界趋势。</p>
+                <div class="footer-newsletter">
+                    <input type="email" placeholder="輸入您的電子郵件" id="newsletterEmail">
+                    <button id="newsletterBtn">訂閱</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                &copy; 2026 VVW Design. All rights reserved.
+            </div>
+            <div class="footer-legal">
+                <a href="#">服務條款</a>
+                <a href="#">隱私政策</a>
+                <a href="#">使用條件</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -1546,7 +1772,65 @@
         function resetCarouselAutoplay() {
             clearInterval(carouselAutoplayInterval);
             startCarouselAutoplay();
-        }
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Newsletter Subscription
+        const newsletterBtn = document.getElementById('newsletterBtn');
+        const newsletterEmail = document.getElementById('newsletterEmail');
+
+        newsletterBtn.addEventListener('click', () => {
+            const email = newsletterEmail.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!email) {
+                alert('請輸入您的電子郵件地址。');
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('請輸入有效的電子郵件地址。');
+                return;
+            }
+
+            // Simulate subscription
+            newsletterBtn.textContent = '已訂閱';
+            newsletterBtn.disabled = true;
+            newsletterEmail.disabled = true;
+            
+            setTimeout(() => {
+                alert('感謝您的訂閱！我們將定期向您發送最新資訊。');
+                newsletterEmail.value = '';
+                newsletterBtn.textContent = '訂閱';
+                newsletterBtn.disabled = false;
+                newsletterEmail.disabled = false;
+            }, 1500);
+        });
+
+        // Allow Enter key to submit newsletter
+        newsletterEmail.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                newsletterBtn.click();
+            }
+        });
+
+                }
 
         carouselPrev.addEventListener('click', () => {
             prevCarouselSlide();
