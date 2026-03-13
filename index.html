@@ -26,10 +26,6 @@
             color: var(--light);
             overflow-x: hidden;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
 
         /* Canvas Background */
@@ -44,11 +40,20 @@
 
         /* Main Content */
         .container {
-            text-align: center;
             z-index: 1;
             padding: 2rem;
-            max-width: 800px;
-            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
 
         .logo-container {
@@ -95,6 +100,16 @@
             letter-spacing: -0.05em;
         }
 
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+        }
+
         p {
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.7);
@@ -112,6 +127,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 10px 20px rgba(255, 62, 62, 0.2);
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -120,19 +137,150 @@
             filter: brightness(1.1);
         }
 
+        /* Products Section */
+        .products-section {
+            padding: 4rem 0;
+            min-height: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 62, 62, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.1), rgba(46, 204, 113, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .product-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .product-category {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .product-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .product-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3);
+        }
+
         /* Footer */
         footer {
-            position: fixed;
-            bottom: 2rem;
+            text-align: center;
+            padding: 3rem 2rem;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
         }
 
         /* Responsive */
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
             .logo-container img { max-width: 200px; }
             .glass-card { padding: 2rem; }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .logo-container img { max-width: 150px; }
+            .glass-card { padding: 1.5rem; }
+            p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -140,19 +288,100 @@
     <canvas id="canvas"></canvas>
 
     <div class="container">
-        <div class="logo-container">
-            <img src="logo.png" alt="VVW Logo">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="logo-container">
+                <img src="logo.png" alt="VVW Logo">
+            </div>
+            
+            <div class="glass-card">
+                <h1>VVW 品牌展示</h1>
+                <p>探索極致的視覺美學與現代設計。我們致力於創造令人驚嘆的數位體驗，將創意與技術完美融合。</p>
+                <a href="https://github.com/eeeeeeeeeeeeez/vvw" class="btn">查看專案</a>
+            </div>
         </div>
-        
-        <div class="glass-card">
-            <h1>VVW 品牌展示</h1>
-            <p>探索極致的視覺美學與現代設計。我們致力於創造令人驚嘆的數位體驗，將創意與技術完美融合。</p>
-            <a href="https://github.com/eeeeeeeeeeeeez/vvw" class="btn">查看專案</a>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <h2>精選產品</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">🎨</div>
+                    <div class="product-content">
+                        <div class="product-category">設計工具</div>
+                        <h3 class="product-title">視覺設計套件</h3>
+                        <p class="product-description">專業級的設計資源庫，包含 UI 元件、配色方案和排版指南，助力您的創意表達。</p>
+                        <div class="product-price">NT$2,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">⚡</div>
+                    <div class="product-content">
+                        <div class="product-category">開發框架</div>
+                        <h3 class="product-title">高效開發框架</h3>
+                        <p class="product-description">輕量級、高性能的前端開發框架，支援響應式設計和實時預覽功能。</p>
+                        <div class="product-price">NT$4,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">🎯</div>
+                    <div class="product-content">
+                        <div class="product-category">分析平台</div>
+                        <h3 class="product-title">數據分析平台</h3>
+                        <p class="product-description">實時監控和分析用戶行為，提供深入的洞察報告和可視化儀表板。</p>
+                        <div class="product-price">NT$6,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">🔐</div>
+                    <div class="product-content">
+                        <div class="product-category">安全方案</div>
+                        <h3 class="product-title">企業安全系統</h3>
+                        <p class="product-description">端到端加密和多層安全防護，確保您的數據和隱私得到最高級別的保護。</p>
+                        <div class="product-price">NT$8,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">🌐</div>
+                    <div class="product-content">
+                        <div class="product-category">雲端服務</div>
+                        <h3 class="product-title">雲端託管服務</h3>
+                        <p class="product-description">全球分佈式伺服器，99.99% 正常運行時間保證，自動備份和災難恢復。</p>
+                        <div class="product-price">NT$5,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">📱</div>
+                    <div class="product-content">
+                        <div class="product-category">行動應用</div>
+                        <h3 class="product-title">跨平台應用框架</h3>
+                        <p class="product-description">一次開發，多平台部署。支援 iOS、Android 和 Web，提供原生級性能。</p>
+                        <div class="product-price">NT$3,999</div>
+                        <button class="product-btn">了解更多</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 VVW Design. All rights reserved.
+        &copy; 2026 VVW Design. All rights reserved. | 專業設計與開發解決方案提供商
     </footer>
 
     <script>
@@ -217,6 +446,14 @@
             });
             requestAnimationFrame(animate);
         }
+
+        // Product button interactions
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
+                alert(`感謝您對 "${productTitle}" 的興趣！\n\n我們的團隊將很快與您聯繫。`);
+            });
+        });
 
         window.addEventListener('resize', init);
         init();
