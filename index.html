@@ -57,11 +57,20 @@
             left: 0;
             right: 0;
             z-index: 100;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: 1px solid transparent;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
             background: var(--glass);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -70,6 +79,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+        }
+
+        .nav-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .nav-logo {
@@ -79,6 +101,22 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            font-size: 1.2rem;
         }
 
         .nav-links {
@@ -91,11 +129,33 @@
             color: var(--text-primary);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
             color: var(--primary);
         }
 
@@ -117,6 +177,85 @@
         .theme-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(255, 62, 62, 0.3);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--glass);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 1rem 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                list-style: none;
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem 1rem 2rem;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-links a.active {
+                background: rgba(255, 62, 62, 0.1);
+                border-left: 3px solid var(--primary);
+                padding-left: calc(2rem - 3px);
+            }
         }
 
         /* Main Content */
@@ -789,13 +928,26 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="nav-logo">VVW</a>
-            <ul class="nav-links">
-                <li><a href="#products">產品</a></li>
-                <li><a href="#faq">常見問題</a></li>
-                <li><a href="#contact">聯絡</a></li>
-            </ul>
-            <button class="theme-toggle" id="themeToggle" title="切換深色/淺色模式">🌙</button>
+            <a href="#home" class="nav-logo">
+                <span class="nav-logo-icon">V</span>
+                <span>VVW</span>
+            </a>
+            <div class="nav-center">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#products">產品</a></li>
+                    <li><a href="#faq">常見問題</a></li>
+                    <li><a href="#contact">聯絡</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" title="切換深色/淺色模式">🌙</button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" title="切換選單">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -1135,7 +1287,62 @@
             requestAnimationFrame(animate);
         }
 
-        // Theme Toggle
+        // Navigation Scroll Effects and Scroll Spy
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinksContainer = document.getElementById('navLinks');
+        const sections = document.querySelectorAll('[id]');
+
+        // Scroll effect for navigation bar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            // Scroll Spy - highlight active section
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && navLinksContainer.classList.contains('active')) {
+                mobileMenuToggle.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
+        });
+
+                // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const htmlElement = document.documentElement;
 
