@@ -12,6 +12,17 @@
             --light: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: rgba(255, 255, 255, 0.9);
+            --text-secondary: rgba(255, 255, 255, 0.6);
+        }
+
+        html.light-mode {
+            --dark: #f5f5f5;
+            --light: #1a1a1a;
+            --glass: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --text-primary: rgba(0, 0, 0, 0.9);
+            --text-secondary: rgba(0, 0, 0, 0.6);
         }
 
         * {
@@ -23,9 +34,10 @@
 
         body {
             background-color: var(--dark);
-            color: var(--light);
+            color: var(--text-primary);
             overflow-x: hidden;
             min-height: 100vh;
+            transition: background-color 0.3s ease;
         }
 
         /* Canvas Background */
@@ -36,6 +48,75 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 62, 62, 0.3);
         }
 
         /* Main Content */
@@ -54,6 +135,7 @@
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            margin-top: 60px;
         }
 
         .logo-container {
@@ -83,6 +165,19 @@
             padding: 3rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .glass-card:hover {
@@ -108,11 +203,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.05em;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
         }
 
         p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 2rem;
         }
@@ -141,6 +238,12 @@
         .products-section {
             padding: 4rem 0;
             min-height: auto;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
         }
 
         /* Filter Buttons */
@@ -150,13 +253,15 @@
             gap: 1rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out 0.2s forwards;
         }
 
         .filter-btn {
             padding: 0.8rem 1.8rem;
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             border-radius: 50px;
             font-weight: 600;
             cursor: pointer;
@@ -168,7 +273,7 @@
 
         .filter-btn:hover {
             border-color: rgba(255, 255, 255, 0.3);
-            color: var(--light);
+            color: var(--text-primary);
             transform: translateY(-2px);
         }
 
@@ -198,6 +303,8 @@
             flex-direction: column;
             height: 100%;
             animation: fadeIn 0.5s ease-out;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
         @keyframes fadeIn {
@@ -228,9 +335,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             overflow: hidden;
             position: relative;
+        }
+
+        .product-icon {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            z-index: 2;
         }
 
         .product-image::before {
@@ -260,7 +373,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--light);
+            color: var(--text-primary);
         }
 
         .product-category {
@@ -274,7 +387,7 @@
 
         .product-description {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 1.5rem;
             flex: 1;
@@ -306,11 +419,107 @@
             box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3);
         }
 
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            scroll-margin-top: 80px;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 62, 62, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--primary), #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(255, 62, 62, 0.2);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            display: block;
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
             font-size: 1.1rem;
         }
 
@@ -319,8 +528,8 @@
             text-align: center;
             padding: 3rem 2rem;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.4);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border-top: 1px solid var(--glass-border);
             margin-top: 4rem;
         }
 
@@ -340,6 +549,12 @@
                 padding: 0.6rem 1.2rem;
                 font-size: 0.85rem;
             }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-links a {
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 640px) {
@@ -355,15 +570,33 @@
                 padding: 0.5rem 1rem;
                 font-size: 0.8rem;
             }
+            .nav-links {
+                display: none;
+            }
+            .contact-form {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
 
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">VVW</a>
+            <ul class="nav-links">
+                <li><a href="#products">產品</a></li>
+                <li><a href="#contact">聯絡</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" title="切換深色/淺色模式">🌙</button>
+        </div>
+    </nav>
+
     <div class="container">
         <!-- Hero Section -->
-        <div class="hero-section">
+        <div class="hero-section" id="home">
             <div class="logo-container">
                 <img src="logo.png" alt="VVW Logo">
             </div>
@@ -376,8 +609,8 @@
         </div>
 
         <!-- Products Section -->
-        <div class="products-section">
-            <h2>精選產品</h2>
+        <div class="products-section" id="products">
+            <h2 class="section-title">精選產品</h2>
             
             <!-- Filter Buttons -->
             <div class="filter-container">
@@ -393,7 +626,13 @@
             <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
                 <div class="product-card" data-category="design">
-                    <div class="product-image">🎨</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="15" width="70" height="70" fill="none" stroke="#ff3e3e" stroke-width="2"/>
+                            <circle cx="35" cy="35" r="8" fill="#ff3e3e"/>
+                            <path d="M 50 60 L 70 40 L 85 55" fill="none" stroke="#2ecc71" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">設計工具</div>
                         <h3 class="product-title">視覺設計套件</h3>
@@ -405,7 +644,12 @@
 
                 <!-- Product 2 -->
                 <div class="product-card" data-category="development">
-                    <div class="product-image">⚡</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 30 50 L 50 70 L 70 30" fill="none" stroke="#ff3e3e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#2ecc71" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">開發框架</div>
                         <h3 class="product-title">高效開發框架</h3>
@@ -417,7 +661,14 @@
 
                 <!-- Product 3 -->
                 <div class="product-card" data-category="analytics">
-                    <div class="product-image">🎯</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="70" width="12" height="15" fill="#ff3e3e"/>
+                            <rect x="40" y="50" width="12" height="35" fill="#2ecc71"/>
+                            <rect x="60" y="30" width="12" height="55" fill="#ff3e3e"/>
+                            <line x1="15" y1="85" x2="75" y2="85" stroke="#2ecc71" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">分析平台</div>
                         <h3 class="product-title">數據分析平台</h3>
@@ -429,7 +680,12 @@
 
                 <!-- Product 4 -->
                 <div class="product-card" data-category="security">
-                    <div class="product-image">🔐</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 50 20 L 75 35 L 75 60 Q 50 80 50 80 Q 25 60 25 35 Z" fill="none" stroke="#ff3e3e" stroke-width="2"/>
+                            <path d="M 45 50 L 50 55 L 60 45" fill="none" stroke="#2ecc71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">安全方案</div>
                         <h3 class="product-title">企業安全系統</h3>
@@ -441,7 +697,13 @@
 
                 <!-- Product 5 -->
                 <div class="product-card" data-category="cloud">
-                    <div class="product-image">🌐</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 25 55 Q 20 45 30 35 Q 35 25 45 25 Q 55 15 65 20 Q 75 20 80 30 Q 85 40 80 50 Z" fill="none" stroke="#ff3e3e" stroke-width="2"/>
+                            <line x1="50" y1="40" x2="50" y2="60" stroke="#2ecc71" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="40" y1="50" x2="60" y2="50" stroke="#2ecc71" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">雲端服務</div>
                         <h3 class="product-title">雲端託管服務</h3>
@@ -453,7 +715,13 @@
 
                 <!-- Product 6 -->
                 <div class="product-card" data-category="mobile">
-                    <div class="product-image">📱</div>
+                    <div class="product-image">
+                        <svg class="product-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="30" y="20" width="40" height="60" rx="4" fill="none" stroke="#ff3e3e" stroke-width="2"/>
+                            <rect x="35" y="25" width="30" height="40" fill="none" stroke="#2ecc71" stroke-width="1.5"/>
+                            <circle cx="50" cy="72" r="2" fill="#ff3e3e"/>
+                        </svg>
+                    </div>
                     <div class="product-content">
                         <div class="product-category">行動應用</div>
                         <h3 class="product-title">跨平台應用框架</h3>
@@ -467,6 +735,33 @@
             <!-- Empty State -->
             <div class="empty-state" id="emptyState" style="display: none;">
                 沒有找到符合條件的產品。請嘗試其他篩選條件。
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact">
+            <h2 class="section-title">聯絡我們</h2>
+            <div class="contact-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">電子郵件</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">主旨</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">訊息</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">發送訊息</button>
+                    <div class="form-message" id="formMessage"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -524,10 +819,17 @@
         function animate() {
             ctx.clearRect(0, 0, width, height);
             
-            // Draw gradient background
+            const isDarkMode = !document.documentElement.classList.contains('light-mode');
             const grad = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width);
-            grad.addColorStop(0, '#1a1a1a');
-            grad.addColorStop(1, '#0a0a0a');
+            
+            if (isDarkMode) {
+                grad.addColorStop(0, '#1a1a1a');
+                grad.addColorStop(1, '#0a0a0a');
+            } else {
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(1, '#f5f5f5');
+            }
+            
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, width, height);
 
@@ -538,23 +840,36 @@
             requestAnimationFrame(animate);
         }
 
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('light-mode');
+            themeToggle.textContent = htmlElement.classList.contains('light-mode') ? '☀️' : '🌙';
+            localStorage.setItem('theme', htmlElement.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            htmlElement.classList.add('light-mode');
+            themeToggle.textContent = '☀️';
+        }
+
         // Filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
         const productCards = document.querySelectorAll('.product-card');
         const emptyState = document.getElementById('emptyState');
-        const productsGrid = document.getElementById('productsGrid');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Update active button
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
-                // Get selected filter
                 const selectedFilter = this.getAttribute('data-filter');
-
-                // Filter products
                 let visibleCount = 0;
+
                 productCards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     
@@ -566,12 +881,7 @@
                     }
                 });
 
-                // Show/hide empty state
-                if (visibleCount === 0) {
-                    emptyState.style.display = 'block';
-                } else {
-                    emptyState.style.display = 'none';
-                }
+                emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
             });
         });
 
@@ -581,6 +891,72 @@
                 const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
                 alert(`感謝您對 "${productTitle}" 的興趣！\n\n我們的團隊將很快與您聯繫。`);
             });
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                formMessage.textContent = '請填寫所有必填欄位。';
+                formMessage.className = 'form-message error';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                formMessage.textContent = '請輸入有效的電子郵件地址。';
+                formMessage.className = 'form-message error';
+                return;
+            }
+
+            // Simulate form submission
+            formMessage.textContent = '訊息已成功發送！感謝您的聯繫，我們將盡快回覆。';
+            formMessage.className = 'form-message success';
+            contactForm.reset();
+
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-title, .filter-container, .contact-form').forEach(el => {
+            observer.observe(el);
         });
 
         window.addEventListener('resize', init);
