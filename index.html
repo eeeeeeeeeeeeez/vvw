@@ -1011,6 +1011,194 @@
             font-size: 1.1rem;
         }
 
+        /* About Us Section */
+        .about-section {
+            padding: 6rem 0;
+            scroll-margin-top: 80px;
+        }
+
+        .about-intro {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .about-intro h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .about-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:nth-child(1) { animation-delay: 0.2s; }
+        .about-card:nth-child(2) { animation-delay: 0.3s; }
+        .about-card:nth-child(3) { animation-delay: 0.4s; }
+        .about-card:nth-child(4) { animation-delay: 0.5s; }
+
+        .about-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 62, 62, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .about-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.5s; }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 52%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 52%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border: 3px solid var(--dark);
+            border-radius: 50%;
+            top: 1.5rem;
+            z-index: 10;
+        }
+
+        .timeline-content {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(255, 62, 62, 0.1);
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Footer */
         /* Footer */
         footer {
@@ -1251,6 +1439,7 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">首頁</a></li>
                     <li><a href="#carousel">品牧故事</a></li>
+                    <li><a href="#about">關於我們</a></li>
                     <li><a href="#products">產品</a></li>
                     <li><a href="#faq">常見問題</a></li>
                     <li><a href="#contact">聯絡</a></li>
@@ -1342,6 +1531,73 @@
 
                     <!-- Navigation Dots -->
                     <div class="carousel-controls" id="carouselControls"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div class="about-section" id="about">
+            <div class="about-intro">
+                <h3>關於 VVW</h3>
+                <p>我們是一支寶權小的設計與開發團隊，致力於為全球企業提供靈活、高效率的數位解決方案。我們相信，優秀的設計和小心的開發是成功的基石。</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <span class="about-icon">&#128640;</span>
+                    <h4>創新領先</h4>
+                    <p>我們不斷探索新的技術和設計理念，確保我們的產品始終走在業界前沿。</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">&#128170;</span>
+                    <h4>專業精神</h4>
+                    <p>每一個專案都由我們的頂級專家費心打磨，確保最高的品質標準。</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">&#127757;</span>
+                    <h4>全球親署</h4>
+                    <p>我們幼寶於世界各地，為全球客戶提供地方化的服務和全球標準。</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-icon">&#128521;</span>
+                    <h4>客戶成功</h4>
+                    <p>您的成功是我們最大的成就感。我們不斷改進服務，確保您的數位体驗一流。</p>
+                </div>
+            </div>
+
+            <h3 class="section-title">發展里程碑</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-title">公司成立</div>
+                        <div class="timeline-description">以大至簡的理念成立 VVW，致力於為中小企業提供优惠的設計服務。</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-title">第一个大客戶</div>
+                        <div class="timeline-description">成功為一家全球矩頭企業提供整體數位解決方案，成為我們的里程碑上的重要一步。</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-title">團隊擴充</div>
+                        <div class="timeline-description">不斷拳載上佳的設計師、開發者和策略師，形成了一支完整的专业團隊。</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-title">全球技術領先者</div>
+                        <div class="timeline-description">今天，我們已成為了數位設計領域的全球技術領先者，測蹤超過 50 個國家。</div>
+                    </div>
                 </div>
             </div>
         </div>
